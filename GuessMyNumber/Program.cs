@@ -48,12 +48,13 @@ namespace GuessMyNumber
         //bisection Algorithm
         static List<int> Bisection(int choice, List<int> arr)
         {
-            int mid = arr[((arr.Count) / 2)-1];
-            PrintInfo(mid, arr);
+            int mid = ((arr.Count) / 2);
+            PrintInfo(arr[mid], arr);
 
-            if (mid == choice)
+            if (arr[mid] == choice)
             {
-                Console.WriteLine($"The value, {mid}, has been found.");
+                Console.WriteLine($"The value, {arr[mid]}, has been found.");
+                arr = new List<int>() { mid };
                 return arr;
             }
 
@@ -98,21 +99,24 @@ namespace GuessMyNumber
             choices.Add(guess.ToString());
             while (exit == false)
             {
-                Console.Write("\nYour Guesses so far: ");
-                choices.ForEach(item => Console.Write(item + " "));
-
                 if (guess > answer)
                 {
-                    choices.Add("^");
-                    Console.WriteLine("\nYour guess was too high.");
+                    choices.Add("(high) ");
+                    Console.WriteLine("Your guess was too high.\n");
+                    Console.Write("Your Guesses so far: ");
+                    choices.ForEach(item => Console.Write(item));
+                    Console.WriteLine();
                     Console.Write("Guess a number between 1-1000: ");
                     guess = AtmarLib.Check.Int(low, high);
                     choices.Add(guess.ToString());
                 }
                 if (guess < answer)
                 {
-                    choices.Add("v");
-                    Console.WriteLine("\nYour guess was too low.");
+                    choices.Add("(low) ");
+                    Console.WriteLine("Your guess was too low.\n");
+                    Console.Write("Your Guesses so far: ");
+                    choices.ForEach(item => Console.Write(item));
+                    Console.WriteLine();
                     Console.Write("Guess a number between 1-1000: ");
                     guess = AtmarLib.Check.Int(low, high);
                     choices.Add(guess.ToString());
