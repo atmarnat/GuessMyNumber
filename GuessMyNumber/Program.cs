@@ -26,10 +26,11 @@ namespace GuessMyNumber
             int hTotal = 0;
             for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Round {i + 1}");
+                Console.WriteLine($"\nRound {i + 1}");
                 hTotal += HumanGuessing();
                 hCount++;
             }
+            Console.WriteLine($"\nThe average number of guesses for human guessing = {hTotal / hCount}\n");
 
             //Guess my number, computer plays
             int cCount = 0;
@@ -43,7 +44,7 @@ namespace GuessMyNumber
 
             //Averages
             //Console.WriteLine($"The average number of guesses for human guessing = {hTotal / hCount}");
-            Console.WriteLine($"The average number of guesses for computer guessing = {cTotal / cCount}");
+            Console.WriteLine($"\nThe average number of guesses for computer guessing = {cTotal / cCount}\n");
         }
 
         //bisection Algorithm
@@ -71,9 +72,9 @@ namespace GuessMyNumber
                 }
                 else if (choice == arr[mid - 1])
                 {
-                    Console.WriteLine($"The value is lower than {arr[mid]}");
-                    Console.WriteLine($"The middle value is {arr[mid]}");
-                    arr.RemoveRange(1, 1);
+                    Console.WriteLine($"The value is equal to {arr[mid-1]}");
+                    Console.WriteLine($"The middle value is {arr[mid-1]}");
+                    arr = new List<int> { arr[mid - 1] };
                     arr = Bisection(choice, arr);
                 }
             }
@@ -160,8 +161,8 @@ namespace GuessMyNumber
                     exit = true;
                 }
             }
-            Console.WriteLine(choices.Count);
-            return choices.Count;
+            Console.WriteLine(choices.Count - (choices.Count / 2));
+            return choices.Count- (choices.Count / 2);
         }
         static int CompGuessing()
         {
