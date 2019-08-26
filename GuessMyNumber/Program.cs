@@ -51,6 +51,7 @@ namespace GuessMyNumber
         {
             int mid = arr.Count / 2;
             PrintInfo(arr);
+            Console.WriteLine("\n\tPerforming Bisection Search");
 
             if (arr.Count%2 == 0) {
                 if (choice > arr[mid - 1])
@@ -83,7 +84,7 @@ namespace GuessMyNumber
                     Console.WriteLine($"The value is equal to {arr[mid]}");
                     Console.WriteLine($"The middle value is {arr[mid]}");
                     PrintInfo(arr);
-                    Console.WriteLine($"The value, {arr[mid]}, has been found.");
+                    Console.WriteLine($"\tThe value, {arr[mid]}, has been found.");
                     return arr;
                 }
 
