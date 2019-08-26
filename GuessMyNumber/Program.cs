@@ -53,19 +53,26 @@ namespace GuessMyNumber
             PrintInfo(arr);
 
             if (arr.Count%2 == 0) {
-                if (choice > arr[mid-1])
+                if (choice > arr[mid - 1])
                 {
-                    Console.WriteLine($"The value is higher than {arr[mid-1]}");
-                    Console.WriteLine($"The middle value is {arr[mid-1]}");
+                    Console.WriteLine($"The value is higher than {arr[mid - 1]}");
+                    Console.WriteLine($"The middle value is {arr[mid - 1]}");
                     arr.RemoveRange(0, arr.Count - mid);
                     arr = Bisection(choice, arr);
                 }
 
-                else if (choice < arr[mid-1])
+                else if (choice < arr[mid - 1])
                 {
                     Console.WriteLine($"The value is lower than {arr[mid]}");
                     Console.WriteLine($"The middle value is {arr[mid]}");
                     arr.RemoveRange(mid, arr.Count - mid);
+                    arr = Bisection(choice, arr);
+                }
+                else if (choice == arr[mid - 1])
+                {
+                    Console.WriteLine($"The value is lower than {arr[mid]}");
+                    Console.WriteLine($"The middle value is {arr[mid]}");
+                    arr.RemoveRange(1, 1);
                     arr = Bisection(choice, arr);
                 }
             }
@@ -73,8 +80,10 @@ namespace GuessMyNumber
             {
                 if (arr[mid] == choice)
                 {
+                    Console.WriteLine($"The value is equal to {arr[mid]}");
+                    Console.WriteLine($"The middle value is {arr[mid]}");
+                    PrintInfo(arr);
                     Console.WriteLine($"The value, {arr[mid]}, has been found.");
-                    arr = new List<int>() { arr[mid] };
                     return arr;
                 }
 
@@ -94,7 +103,6 @@ namespace GuessMyNumber
                     arr = Bisection(choice, arr);
                 }
             }
-            Console.WriteLine();
             return arr;
         }
         static void PrintInfo(List<int> arr)
@@ -184,12 +192,8 @@ namespace GuessMyNumber
                 }
                 if (choice == "too low")
                 {
-                    min = mid;
+                    min = mid + 1;
                     mid = (max + min) / 2;
-                    if (min == 99)
-                    {
-                        mid = 100;
-                    }
                 }
                 if (choice == "correct")
                 {
