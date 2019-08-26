@@ -12,8 +12,9 @@ namespace GuessMyNumber
             Console.WriteLine("GuessMyNumber Project");
             //Bisection algorithm
             List<int> arr = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
+            Console.Write("Enter a number 1-10. I will show you how I guess it: ");
             int choice = Check.Int(1, 10);
+
             Bisection(choice, arr);
 
             Console.WriteLine("Are you ready to play?");
@@ -48,34 +49,57 @@ namespace GuessMyNumber
         //bisection Algorithm
         static List<int> Bisection(int choice, List<int> arr)
         {
-            int mid = ((arr.Count) / 2);
-            PrintInfo(arr[mid], arr);
+            int mid = arr.Count / 2;
+            PrintInfo(arr);
 
-            if (arr[mid] == choice)
-            {
-                Console.WriteLine($"The value, {arr[mid]}, has been found.");
-                arr = new List<int>() { mid };
-                return arr;
+            if (arr.Count%2 == 0) {
+                if (choice > arr[mid-1])
+                {
+                    Console.WriteLine($"The value is higher than {arr[mid-1]}");
+                    Console.WriteLine($"The middle value is {arr[mid-1]}");
+                    arr.RemoveRange(0, arr.Count - mid);
+                    arr = Bisection(choice, arr);
+                }
+
+                else if (choice < arr[mid-1])
+                {
+                    Console.WriteLine($"The value is lower than {arr[mid]}");
+                    Console.WriteLine($"The middle value is {arr[mid]}");
+                    arr.RemoveRange(mid, arr.Count - mid);
+                    arr = Bisection(choice, arr);
+                }
             }
-
-            else if (choice > arr[mid])
+            else
             {
-                
-                arr.RemoveRange(0, arr.Count - mid);
-                arr = Bisection(choice, arr);
-            }
+                if (arr[mid] == choice)
+                {
+                    Console.WriteLine($"The value, {arr[mid]}, has been found.");
+                    arr = new List<int>() { arr[mid] };
+                    return arr;
+                }
 
-            else if (choice < arr[mid])
-            {
-                arr.RemoveRange(mid, arr.Count - mid);
-                arr = Bisection(choice, arr);
-            }
+                else if (choice > arr[mid])
+                {
+                    Console.WriteLine($"The value is higher than {arr[mid]}");
+                    Console.WriteLine($"The middle value is {arr[mid]}");
+                    arr.RemoveRange(0, arr.Count - mid);
+                    arr = Bisection(choice, arr);
+                }
 
+                else if (choice < arr[mid])
+                {
+                    Console.WriteLine($"The value is lower than {arr[mid]}");
+                    Console.WriteLine($"The middle value is {arr[mid]}");
+                    arr.RemoveRange(mid, arr.Count - mid);
+                    arr = Bisection(choice, arr);
+                }
+            }
+            Console.WriteLine();
             return arr;
         }
-        static void PrintInfo(int mid, List<int> arr)
+        static void PrintInfo(List<int> arr)
         {
-            Console.WriteLine($"The middle value is now {mid}");
+            //Console.WriteLine($"The middle value is now {mid}");
             Console.Write("The list is now set to {");
             for(int i = 0; i < arr.Count - 1; i++)
             {
