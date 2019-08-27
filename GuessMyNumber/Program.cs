@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using AtmarLib;
 
+//The maximum number of guesses it should take to find a number 1-n is Math.Log(n, 2), thanks to the tree structure
+
 namespace GuessMyNumber
 {
     class Program
