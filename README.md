@@ -29,7 +29,7 @@ For example, here is the output of a function call, the searched value being 7 a
 
 The bisection algorithm is nice because it is guaranteed to find an answer (or return if there is no answer) in logarithmic time of the size of the list. Only 10 repetitions of the function are necessary to find a result in a list of 1024 items, and only 20 repetitions to find a result in a list of 1,000,000 items. Mathematically, the time complexity of the bisection algorithm is LaTeX: \log_2\left(n\right) log 2 ⁡ ( n ) , where LaTeX: n n  is the length of the sorted list to be searched.
 
-### Implement bisection algorithm
+#### Implement bisection algorithm
 
 Write a console application implementing the bisection algorithm. As the initial list, use an integer array from 1 to 10, like this: int[] list = 1,2,3,4,5,6,7,8,9,10;. As input, have the user select a number from 1 to 10. Have the application print each step. Use appropriate exception handling to guard against invalid input from the user.
 
