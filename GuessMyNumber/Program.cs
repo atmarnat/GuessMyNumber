@@ -14,6 +14,13 @@ namespace GuessMyNumber
             Console.WriteLine("GuessMyNumber Project");
             //Bisection algorithm
             List<int> arr = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+
+            foreach (var i in arr)
+            {
+                Console.WriteLine($"The number of iterations it took to find {i} is {BinTree(i, arr[0], arr[arr.Count - 1], arr[arr.Count / 2] - arr[0])}");
+            }
+
             Console.Write("Enter a number 1-10. I will show you how I guess it: ");
             int choice = Check.Int(1, 10);
 
@@ -48,7 +55,8 @@ namespace GuessMyNumber
             //Console.WriteLine($"The average number of guesses for human guessing = {hTotal / hCount}");
             Console.WriteLine($"\nThe average number of guesses for computer guessing = {cTotal / cCount}\n");
         }
-
+        static int BinTree(int choice, int min, int max, int mid, int count = 1)
+            => mid == choice ? count / 2 + 1 : (mid > choice ? BinTree(choice, min, mid, (max + min) / 2, count + 1) : BinTree(choice, mid+1, max, (max + min) / 2, count + 1));
         //bisection Algorithm
         static List<int> Bisection(int choice, List<int> arr)
         {
